@@ -1,4 +1,5 @@
-use BakeryShopdb.orders.insert({"customerName": "Alice Johnson",
+use BakeryShop
+db.orders.insert({"customerName": "Alice Johnson",
 "item": "Chocolate Cake",
 "quantity": 2,
 "totalPrice": 500})
