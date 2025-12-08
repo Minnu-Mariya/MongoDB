@@ -1,0 +1,41 @@
+**Create a new database called EventTracker.
+
+use EventTracker
+
+**Inside it, create a collection named UpcomingEvents.
+Insert one event document using insertOne() with the following data:
+name: "Music Fest" (text)
+date: use the current date
+isFreeEntry: false
+ticketPrice: 299.99
+performers: ["DJ Max", "Live Band"]
+location: an object with city: "Chennai" and venue: "Beach Arena"
+specialCode: null
+
+db.UpcomingEvents.insertOne({"name": "Music Fest",
+date: Date(),
+isFreeEntry: false,
+ticketPrice: 299.99,
+performers: ["DJ Max", "Live Band"],
+location: [{city:"chennai"},{venue:"Beach Arena"}],specialCode:null})
+
+
+**Insert two more events at once using insertMany(). Use your own sample data.
+
+db.UpcomingEvents.insertMany([{"name": "Action Fest",date: Date(),
+isFreeEntry: true,
+ticketPrice: 0,
+performers: ["DJ Max", "Live Band"],
+location: [{city:"Bangalore"},{venue:"Beach Side"}]},{"name": "Dance Fest",date: Date(),
+isFreeEntry: false,
+ticketPrice: 299.99,
+performers: ["DJ Max", "Live Band"],
+location: [{city:"chennai"},{venue:"Beach Arena"}],specialCode:null}])
+
+**Use show collections to check the collection.
+
+show collections
+
+**Use db.UpcomingEvents.find() to display all event documents.
+
+db.UpcomingEvents.find()
