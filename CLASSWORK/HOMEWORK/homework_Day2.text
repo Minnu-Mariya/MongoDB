@@ -13,7 +13,7 @@ contact: an object with email: "ravi@example.com" and phone: "9876543210"
 joinedDate: today’s date
 managerAssigned: null
 
-db.CompanyDB.insertOne({"name": "Ravi Kumar",
+db.Employees.insertOne({"name": "Ravi Kumar",
 "age": 28,
 "isActive": true,
 "salary": 45000.50,
@@ -24,7 +24,7 @@ skills: ["JavaScript", "Node.js", "MongoDB"],
 
 **Insert three more employee records at once using insertMany() with sample data of your choice. Make sure to use at least 5 different data types in each record.
 
-db.CompanyDB.insertMany([{"name": "Ravi Kumar",
+db.Employees.insertMany([{"name": "Ravi Kumar",
 "age": 28,
 "isActive": true,
 "salary": 45000.50,
