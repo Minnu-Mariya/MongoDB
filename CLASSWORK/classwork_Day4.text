@@ -1,36 +1,32 @@
-**db.Clothes.insertMany([
-    { name: "Denim Jeans", category: "Pants", price: 599.99, stock: 20, discount: true },
-    { name: "Cotton T-Shirt", category: "Shirt", price: 199.99, stock: 15, discount: false },
-    { name: "Leather Jacket", category: "Jacket", price: 999.99, stock: 5, discount: true },
-    { name: "Formal Shirt", category: "Shirt", price: 349.99, stock: 12, discount: true },
-    { name: "Cargo Pants", category: "Pants", price: 499.99, stock: 8, discount: false },
-    { name: "Wool Sweater", category: "Sweater", price: 699.99, stock: 10, discount: true },
-    { name: "Casual Shorts", category: "Shorts", price: 249.99, stock: 25, discount: true },
-    { name: "Silk Scarf", category: "Accessories", price: 149.99, stock: 0, discount: false },
-    { name: "Hooded Sweatshirt", category: "Sweater", price: 399.99, stock: 18, discount: true },
-    { name: "Chinos", category: "Pants", price: 299.99, stock: 11, discount: false }
+**db.Products.insertMany([
+    { productName: "Galaxy S21", category: "Smartphones", price: 799.99, stock: 10, discountAvailable: true },
+    { productName: "iPhone 13", category: "Smartphones", price: 999.99, stock: 8, discountAvailable: false },
+    { productName: "Dell XPS 13", category: "Laptops", price: 1299.99, stock: 6, discountAvailable: true },
+    { productName: "HP Spectre x360", category: "Laptops", price: 1499.99, stock: 3, discountAvailable: false },
+    { productName: "Sony Headphones", category: "Accessories", price: 199.99, stock: 15, discountAvailable: true },
+    { productName: "Logitech Mouse", category: "Accessories", price: 49.99, stock: 20, discountAvailable: true },
+    { productName: "MacBook Air", category: "Laptops", price: 999.99, stock: 7, discountAvailable: true },
+    { productName: "Samsung Tablet", category: "Tablets", price: 299.99, stock: 12, discountAvailable: false },
+    { productName: "Smart Watch", category: "Wearables", price: 249.99, stock: 5, discountAvailable: true },
+    { productName: "Gaming Monitor", category: "Monitors", price: 399.99, stock: 4, discountAvailable: false }
 ]);
 
-**Find and neatly display all clothes priced greater than 500.
+**Find and neatly display all products with a price less than 1000.
 
-db.Clothes.find({"price":{$gt:500}})
+db.Products.find({"price":{$lt:1000}})
 
-**Find one clothing item that belongs to the "Shirt" category.
+**Find one product whose category is "Smartphones".
 
-db.Clothes.findOne({"category":"Shirt"})
+db.Products.findOne({category:"Smartphones"})
 
-**Find all clothes with a price less than or equal to 300 AND stock greater than 10.
+**Find all products that are in the "Laptops" category and have a stock greater than or equal to 5.
 
-db.Clothes.find({$and:[{"price":{$lte:300}},{"stock":{$gt:10}}]})
+db.Products.find({$and:[{"category":"Laptops"},{"stock":{$gte:5}}]})
 
-**Find all clothes that are either priced less than 200 OR have a discount available.
+**Find all products where the price is either less than 300 OR the discount is available.
 
-db.Clothes.find({$or:[{"price":{$lt:200}},{"discount":true}]})
+db.Products.find({$or:[{"price":{$lt:300}},{discountAvailable:true}]})
 
-**Update the stock of the clothing item named "Denim Jeans" to 50 using the update() method.
+**Find products whose price is NOT equal to 1500.
 
-db.Clothes.updateOne({"name":"Denim Jeans"},{$set:{"stock":"50"}})
-
-**Remove one document where the stock is exactly 0.
-
-db.Clothes.deleteOne({"stock": 0})
+db.Products.find({"price":{$ne:1500}})
