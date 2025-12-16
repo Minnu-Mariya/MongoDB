@@ -25,4 +25,4 @@ db.products.find({},{"name":1,"rating":1,"_id":0}).sort({"rating":-1}).skip(5).l
 
 **List all distinct categories available in the products collection.
 
-db.products.distinct("category")
+db.products.distinct("category")  
