@@ -1,0 +1,15 @@
+**Create an index to help quickly find posts by the author field in ascending order.
+
+db.posts.createIndex({author:1})
+
+**Create another index on publishedDate in descending order to quickly sort the latest posts.
+
+db.posts.createIndex({publishedDate:-1})
+
+**List all indexes present in the posts collection.
+
+db.posts.getIndexes()
+
+**Finally, remove the index on the author field.
+
+db.posts.dropIndex({author: 1})

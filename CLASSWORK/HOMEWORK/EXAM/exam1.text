@@ -1,0 +1,73 @@
+db.Employee.insertMany([
+  { "id": 1, "Name": "Raju", "Department": "Sales", "Leave": 1 },
+  { "id": 2, "Name": "Sangeetha", "Department": "Sales", "Leave": 3 },
+  { "id": 3, "Name": "Vinay", "Department": "Operations", "Leave": 8 },
+  { "id": 4, "Name": "Abey", "Department": "Packing", "Leave": 2 },
+  { "id": 5, "Name": "Thomas", "Department": "Packing", "Leave": 1 },
+  { "id": 6, "Name": "Muneer", "Department": "Operations", "Leave": 7 },
+  { "id": 7, "Name": "Aparna", "Department": "Sales", "Leave": 3 },
+  { "id": 8, "Name": "Abid", "Department": "Operations", "Leave": 9 },
+  { "id": 9, "Name": "Fathima", "Department": "Sales", "Leave": 11 },
+  { "id": 10, "Name": "Varghese", "Department": "Operations", "Leave": 14 }
+])
+
+db.Exam.insertMany([
+  { "id": 1, "Employee_id": 2, "exam_status": "Pass" },
+  { "id": 2, "Employee_id": 5, "exam_status": "Fail" },
+  { "id": 3, "Employee_id": 1, "exam_status": "Fail" },
+  { "id": 4, "Employee_id": 8, "exam_status": "Pass" },
+  { "id": 5, "Employee_id": 3, "exam_status": "Pass" },
+  { "id": 6, "Employee_id": 1, "exam_status": "Pass" },
+  { "id": 7, "Employee_id": 6, "exam_status": "Fail" },
+  { "id": 8, "Employee_id": 9, "exam_status": "Pass" },
+  { "id": 9, "Employee_id": 10, "exam_status": "pass" }
+])
+
+1. db.Employee.find({$and: [{Department:"sales",leave:{$gt:5}}]})
+
+2. db.Employee.countDocuments({Department:
+  "operations"})
+
+3. db.Employee.aggregate([
+  {
+    $group: {
+      _id: "$Department",
+      employee_count: { $sum: 1 }
+    }
+  }
+])
+
+4. db.Employee.aggregate([
+  { $group: { _id: "$Department", total: { $sum: "$Leave" } } },
+  { $match: { total: { $gt: 10 } } }
+])
+
+5. db.Employee.aggregate([
+  {
+    $lookup: {
+      from: "Exam",
+      localField: "id",
+      foreignField: "employee_id",
+      as: "examDetails"
+    }
+  },
+  {
+    $unwind: "$examDetails"
+  },
+  {
+    $match: {
+      "examDetails.exam_status": "Pass"
+    }
+  }
+])
+
+6. db.Employee.aggregate([
+  {
+    $lookup: {
+      from: "Exam",
+      localField: "id",
+      foreignField: "employee_id",
+      as: "examDetails"
+    }
+  }, { $match : { examDetails : {$eq : []}}}
+])
